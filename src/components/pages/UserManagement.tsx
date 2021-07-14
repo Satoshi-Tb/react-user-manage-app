@@ -11,13 +11,16 @@ import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
 import { useSelectUsers } from "../../hooks/useSelectUsers";
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { getUsers, users, loading } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUsers();
+  const { loginUser } = useLoginUser();
+  console.log(`ログインユーザー:${loginUser?.username}`);
 
-  console.log(selectedUser);
+  //console.log(selectedUser);
 
   useEffect(() => getUsers(), []);
 
