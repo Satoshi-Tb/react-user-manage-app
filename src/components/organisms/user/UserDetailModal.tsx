@@ -9,7 +9,8 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Stack
+  Stack,
+  Button
 } from "@chakra-ui/react";
 
 import { User } from "../../../types/api/user";
@@ -22,6 +23,9 @@ type Props = {
 
 export const UserDetailModal: VFC<Props> = memo((props) => {
   const { isOpen, onClose, user } = props;
+  const onClickUpdate = () => {
+    alert("更新");
+  };
   return (
     <Modal
       isOpen={isOpen}
@@ -51,6 +55,7 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
               <FormLabel>TEL</FormLabel>
               <Input value={user?.phone} isReadOnly />
             </FormControl>
+            {false ? <Button onClick={onClickUpdate}>更新</Button> : <></>}
           </Stack>
         </ModalBody>
       </ModalContent>
