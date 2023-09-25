@@ -1,17 +1,23 @@
 import { memo, VFC, useState, ChangeEvent } from "react";
 import { Flex, Box, Heading, Divider, Input, Stack } from "@chakra-ui/react";
-
+import { useRouter } from "next/router";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { useAuth } from "../../hooks/useAuth";
 
 export const Login: VFC = memo(() => {
-  const { login, loading } = useAuth();
-
+  const { login, loading, errMessage } = useAuth();
+  const router = useRouter();
   const [userId, setUserId] = useState("");
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) =>
     setUserId(e.target.value);
-  const onClickLogin = () => {
-    login(userId);
+  const onClickLogin = async () => {
+    await login(userId);
+    console.log(`error = ${errMessage}`);
+    if (errMessage === "") {
+      router.push("/user_management");
+    } else {
+      alert(errMessage);
+    }
   };
   return (
     <Flex align="center" justify="center" height="100vh">

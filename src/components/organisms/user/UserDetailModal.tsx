@@ -10,13 +10,13 @@ import {
   FormLabel,
   Input,
   Stack,
-  Button
+  Button,
 } from "@chakra-ui/react";
 
 import { User } from "../../../types/api/user";
 
 type Props = {
-  user: User | null;
+  user: User | null | undefined;
   isOpen: boolean;
   isAdmin?: boolean;
   onClose: () => void;
